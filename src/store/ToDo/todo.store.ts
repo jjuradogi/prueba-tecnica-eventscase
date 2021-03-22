@@ -1,4 +1,4 @@
-import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
+import { Action, getModule, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import { inject } from 'inversify-props';
 import { find, filter } from 'lodash';
 
@@ -93,7 +93,7 @@ export class ToDo extends VuexModule {
   }
 
   @Mutation
-  public setTodoList(todoList: ITodoItem[]): void {
+  public setToDoList(todoList: ITodoItem[]): void {
     this.todoList = todoList;
   }
 
@@ -114,3 +114,7 @@ export class ToDo extends VuexModule {
     if (foundToDoItem) foundToDoItem.isChecked = !foundToDoItem.isChecked;
   }
 }
+
+export const todoStore = {
+  build: (): ToDo => getModule(ToDo)
+};
