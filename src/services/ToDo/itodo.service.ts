@@ -7,8 +7,6 @@ export interface IToDoService {
 
   createToDoItem(description: string): AxiosPromise<ITodoItem>;
 
-  deleteToDoItem(id: string): AxiosPromise<boolean>;
-
   completeToDoItem(id: string): AxiosPromise<boolean>;
 
   deleteAllCompletedToDoItem(): AxiosPromise<ITodoItem[]>;

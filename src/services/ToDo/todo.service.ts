@@ -24,15 +24,6 @@ export class ToDoService implements IToDoService {
       }
     });
 
-  public deleteToDoItem = (id: string): AxiosPromise<boolean> =>
-    this.API({
-      url: '',
-      method: 'delete',
-      data: {
-        id
-      }
-    });
-
   public completeToDoItem = (id: string): AxiosPromise<boolean> =>
     this.API({
       url: 'complete',

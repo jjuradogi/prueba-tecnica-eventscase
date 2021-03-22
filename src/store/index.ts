@@ -3,7 +3,11 @@ import Vuex, { Store } from 'vuex';
 
 import { buildStoreModule } from './storeBuilder';
 
-export interface StateInterface {}
+import { ITodoState } from './ToDo/itodo.state';
+
+export interface StateInterface {
+  todo: ITodoState;
+}
 
 Vue.use(Vuex);
 

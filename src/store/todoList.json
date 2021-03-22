@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "description": "First ToDo Item!",
+    "isChecked": false
+  },
+  {
+    "id": "2",
+    "description": "Second ToDo Item!",
+    "isChecked": false
+  },
+  {
+    "id": "1",
+    "description": "Second ToDo Item!",
+    "isChecked": false
+  }
+]
