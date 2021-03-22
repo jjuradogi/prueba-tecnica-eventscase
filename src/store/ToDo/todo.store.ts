@@ -114,6 +114,12 @@ export class ToDo extends VuexModule {
 
     if (foundToDoItem) foundToDoItem.isChecked = !foundToDoItem.isChecked;
   }
+
+  get shouldEnableDeleteAllCheckedToDoItem(): boolean {
+    const foundAnyCheckedToDo = find(this.todoList, todo => todo.isChecked);
+
+    return !!foundAnyCheckedToDo;
+  }
 }
 
 export const todoStore = {

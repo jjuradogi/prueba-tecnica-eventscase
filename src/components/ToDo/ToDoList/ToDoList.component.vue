@@ -4,12 +4,20 @@
       <todo-item v-for="todo in todoList" :key="todo.id" :todo-item="todo" />
     </ul>
     <span v-else class="no-data mt-4">No se ha añadido ninguna tarea...</span>
-    <button type="button" class="btn primary-background my-4 delete-completed-button">Eliminar completados</button>
+    <button
+      type="button"
+      class="btn primary-background my-4 delete-completed-button"
+      :disabled="!shouldEnableDeleteAllCheckedToDoItem"
+      @click="deleteCompleted"
+    >
+      Eliminar completados
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Action, Getter } from 'vuex-class';
 
 import { ITodoItem } from '@/models';
 
@@ -22,6 +30,16 @@ import ToDoItem from '@/components/ToDo/ToDoItem/ToDoItem.component.vue';
 })
 export default class ToDoList extends Vue {
   @Prop({ required: true, type: Array }) todoList!: ITodoItem[];
+
+  @Getter('todo/shouldEnableDeleteAllCheckedToDoItem')
+  private shouldEnableDeleteAllCheckedToDoItem!: () => boolean;
+
+  @Action('todo/deleteAllCompletedToDoItem')
+  private deleteAllCompletedToDoItem!: () => Promise<void>;
+
+  deleteCompleted(): void {
+    this.deleteAllCompletedToDoItem();
+  }
 }
 </script>
 
@@ -37,7 +55,7 @@ export default class ToDoList extends Vue {
 
 .list-group {
   max-height: 75vh;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .delete-completed-button {
