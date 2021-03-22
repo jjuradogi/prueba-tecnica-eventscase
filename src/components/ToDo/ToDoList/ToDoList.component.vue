@@ -35,6 +35,11 @@ export default class ToDoList extends Vue {
   justify-content: space-between;
 }
 
+.list-group {
+  max-height: 75vh;
+  overflow: scroll;
+}
+
 .delete-completed-button {
   width: 50%;
   align-self: center;

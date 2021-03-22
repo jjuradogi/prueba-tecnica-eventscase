@@ -54,6 +54,7 @@ export class ToDo extends VuexModule {
       };
 
       this.context.commit(ToDoMutationTypes.ADD_TODO_ITEM, newToDoItem);
+      this.context.commit(ToDoMutationTypes.SET_NEXT_TODO_ITEM_ID, this.nextToDoItemId + 1);
     } catch (error) {
       throw new Error(error);
     }
@@ -103,7 +104,7 @@ export class ToDo extends VuexModule {
   }
 
   @Mutation
-  public addTodoItem(newToDoItem: ITodoItem): void {
+  public addToDoItem(newToDoItem: ITodoItem): void {
     this.todoList.push(newToDoItem);
   }
 
