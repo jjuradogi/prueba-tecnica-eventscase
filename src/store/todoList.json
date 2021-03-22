@@ -1,17 +1,22 @@
 [
   {
     "id": "1",
-    "description": "First ToDo Item!",
+    "description": "Aprender LESS",
     "isChecked": false
   },
   {
     "id": "2",
-    "description": "Second ToDo Item!",
+    "description": "Realizar tests en React",
     "isChecked": false
   },
   {
-    "id": "1",
-    "description": "Second ToDo Item!",
+    "id": "3",
+    "description": "Animaciones",
+    "isChecked": true
+  },
+  {
+    "id": "4",
+    "description": "Desplegar aplicación",
     "isChecked": false
   }
 ]
