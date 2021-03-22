@@ -8,6 +8,8 @@ import { generateStore } from './store';
 
 import buildDependencyContainer from './buildDependencyContainer';
 
+import './styles/app.scss';
+
 class AppBootstrap {
   constructor() {
     this.loadDependencyContainer();
