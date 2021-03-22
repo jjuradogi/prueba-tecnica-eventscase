@@ -2,12 +2,18 @@
   <li class="list-group-item">
     <div class="row">
       <div class="custom-control custom-checkbox form-container">
-        <input type="checkbox" class="custom-control-input" :id="todoItem.id" v-model="todoItem.isChecked" />
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          :id="todoItem.id"
+          v-model="todoItem.isChecked"
+          @click="checkToDo"
+        />
         <label class="custom-control-label" :for="todoItem.id">
           <span v-if="!todoItem.isChecked" class="ml-4 secondary-text">
             {{ todoItem.description }}
           </span>
-          <span v-else class="ml-4 secondary-text checked-text-container">
+          <span v-else class="ml-4 secondary-text checked-text-container" @click="checkToDo">
             <span class="checked-text">{{ todoItem.description }}</span>
           </span>
         </label>
@@ -18,12 +24,20 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
 
 import { ITodoItem } from '@/models';
 
 @Component
 export default class ToDoItem extends Vue {
   @Prop({ required: true, type: Object }) todoItem!: ITodoItem;
+
+  @Action('todo/completeToDoItem')
+  private completeToDoItem!: (id: string) => boolean;
+
+  checkToDo(): void {
+    this.completeToDoItem(this.todoItem.id);
+  }
 }
 </script>
 
