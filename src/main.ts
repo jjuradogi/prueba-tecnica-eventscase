@@ -1,12 +1,33 @@
+import 'reflect-metadata';
 import Vue from 'vue';
 import App from './App.vue';
+
 import router from './router';
-import store from './store';
 
-Vue.config.productionTip = false;
+import { generateStore } from './store';
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');
+import buildDependencyContainer from './buildDependencyContainer';
+
+class AppBootstrap {
+  constructor() {
+    this.loadDependencyContainer();
+    this.loadApp();
+  }
+
+  loadDependencyContainer = (): void => {
+    buildDependencyContainer();
+  };
+
+  loadApp = (): void => {
+    Vue.config.productionTip = false;
+
+    new Vue({
+      router,
+      store: generateStore(),
+      render: h => h(App)
+    }).$mount('#app');
+  };
+}
+
+// eslint-disable-next-line
+new AppBootstrap();
